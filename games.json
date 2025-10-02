@@ -2,7 +2,7 @@
   {
     "title": "Back to Home",
     "link": "https://ethanytangcodes.github.io/index.html",
-    "image": "/Assets/home.png"
+    "image": "Assets/home.png"
   },
   {
     "title": "Feedback or request a game",
@@ -452,7 +452,7 @@
   {
     "title": "Eggy Car",
     "link": "projects/eggycar/index.html",
-    "image": "projects/eggycar/eggy-car.png"
+    "image": "projects/eggycar/icon-256.png"
   },
   {
     "title": "Elastic man",
