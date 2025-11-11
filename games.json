@@ -360,6 +360,11 @@
     "image": "projects/defend-the-tank/portrait-start.jpg"
   },
   {
+    "title": "Dino Bros",
+    "link": "projects/dinobros/index.html",
+    "image": "projects/dinobros/dinobros.jpg"
+  },
+  {
     "title": "Doge 2048",
     "link": "projects/doge2048/index.html",
     "image": "projects/doge2048/doge1.jpeg"
@@ -933,6 +938,11 @@
     "title": "Learn to fly idle",
     "link": "projects/learntoflyidle/index.html",
     "image": "projects/learntoflyidle/icon.jpg"
+  },
+  {
+    "title": "Level devil",
+    "link": "projects/leveldevil/index.html",
+    "image": "projects/leveldevil/favicon.png"
   },
   {
     "title": "Line rider",
