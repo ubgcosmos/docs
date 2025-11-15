@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const renderFavorites = () => {
       favoritesGrid.innerHTML = '';
+      if (favorites.length === 0) {
+        favoritesGrid.innerHTML = '<p style="color: white; text-align: center;">No favorites yet. Click the star on a game to add it here!</p>';
+        return;
+      }
       const favoriteGames = data.filter(game => favorites.includes(game.title));
       const fragment = document.createDocumentFragment();
 
@@ -35,10 +39,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Change link to open in iframe window
         const linkElement = gameElement.querySelector('a');
-        linkElement.href = '#';
         linkElement.addEventListener('click', (e) => {
           e.preventDefault();
-          openGameInWindow(result.link, result.title);
+          openGameInWindow(linkElement.getAttribute('data-link'), result.title);
         });
 
         fragment.appendChild(gameElement);
