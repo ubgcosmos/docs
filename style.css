@@ -565,3 +565,13 @@ p {
 .favorite-star.favorited {
   color: gold;
 }
+
+#favoritesSection {
+  margin: 20px 0;
+}
+
+#favoritesSection h2 {
+  color: white;
+  font-family: 'radio canada big';
+  text-align: center;
+}
