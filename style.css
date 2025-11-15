@@ -192,6 +192,7 @@ img {
   -webkit-backdrop-filter: blur(5px);
   outline-style: solid;
   outline-color: #ffffff;
+  position: relative;
 }
 
 #searchResultTemplate {
@@ -536,4 +537,31 @@ p {
 
 .rndrec:hover {
   transform: scale(1.05);
+}
+
+.favorite-star {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.favorite-star:hover::after {
+  content: "favorite";
+  position: absolute;
+  top: -30px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.favorite-star.favorited {
+  color: gold;
 }
