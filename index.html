@@ -8,33 +8,32 @@
   <title>Home | Drive</title>
 </head>
 <body>
-  <div class="header" style="height: 350px; text-align: center;">
+  <div class="header" style="height: 300px; text-align: center;">
     <h1 style="margin-top: -10px;" id="h1ani"><b>G4MES</b></h1>
-    <p style="color: white; font-family: 'ubuntu sans', sans-serif; margin-top: 10px;">made by ethan</p>
-  </div>
-
-  <div id="favoritesSection">
-    <h2>Favorites</h2>
-    <div id="favoritesGrid" style="display: flex; flex-wrap: wrap; justify-content: center;">
-      <!-- Favorite game cards will be added here -->
-    </div>
+    <p>made by ethan</p>
   </div>
 
   <hr>
-
-  <h2>All Games</h2>
 
   <div id="searchContainer" style="width: 50%; margin: 0 auto;">
     <input type="text" id="searchInput" placeholder="Type here to search g4mes..." style="width: 100%;">
   </div>
 
+  <div id="favorites">
+    <h2>Favorites</h2>
+    <div id="favoritesCards" style="display: flex; flex-wrap: wrap;">
+      <!-- Favorited game cards will be added here by JavaScript -->
+    </div>
+  </div>
+
+  <hr>
+
   <div id="searchResults">
     <script type="text/html" id="searchResultTemplate">
-      <a data-link="{{link}}" style="text-decoration: none">
+      <a href="{{link}}" style="text-decoration: none">
         <div class="rndrec">
           <img src="{{image}}" alt="G4mes loading..." width="200" height="199" loading="lazy">
           {{title}}
-          <div class="favorite-star" data-title="{{title}}">★</div>
         </div>
       </a>
     </script>
