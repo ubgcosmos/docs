@@ -27,18 +27,6 @@ body {
 .page-title { font-size: 72px; font-weight: 800; color: #e5e5e5; margin-bottom: 8px; letter-spacing: -2px; }
 .page-subtitle { font-size: 18px; color: #888; margin-bottom: 15px; }
 
-#saveManagerBtn {
-    background: #1a1a1a;
-    border: 2px solid #2a2a2a;
-    color: #e5e5e5;
-    padding: 10px 16px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: 0.2s;
-}
-#saveManagerBtn:hover { border-color: #6a0dad; color: #c79bff; }
-
 .search-container {
     margin-bottom: 60px;
     position: relative;
@@ -96,36 +84,6 @@ body {
 
 hr { border: none; border-top: 1px solid #2a2a2a; margin: 40px 0; }
 
-/* SAVE MODAL */
-#saveModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(6px);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeIn 0.25s ease;
-}
-@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
-.save-modal-box {
-    background: #1a1a1a;
-    border: 2px solid #2a2a2a;
-    border-radius: 14px;
-    padding: 30px;
-    max-width: 420px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
-}
-.save-btn { width: 100%; padding: 14px; border-radius: 12px; cursor: pointer; font-size: 16px; margin-bottom: 15px; border: none; transition: 0.2s; }
-#exportBtn { background: #6a0dad; color: white; }
-#exportBtn:hover { background: #7f24d9; }
-#importLabel { background: #2a2a2a; color: #ccc; display: block; padding: 14px; border-radius: 12px; cursor: pointer; margin-bottom: 20px; }
-#closeSaveModal { background: #2a2a2a; color: #ccc; padding: 10px 20px; border-radius: 10px; cursor: pointer; border: none; transition: 0.2s; }
-#closeSaveModal:hover { background: #3a3a3a; }
-
 /* GAME IFRAME MODAL - COSMOS STYLE */
 #gameModal {
     display: none;
@@ -174,7 +132,6 @@ hr { border: none; border-top: 1px solid #2a2a2a; margin: 40px 0; }
     <div class="header-section">
         <h1 class="page-title">G4MES</h1>
         <p class="page-subtitle">made by ethan</p>
-        <button id="saveManagerBtn">Save Manager</button>
     </div>
 
     <div class="search-container">
@@ -201,20 +158,6 @@ hr { border: none; border-top: 1px solid #2a2a2a; margin: 40px 0; }
                 <p style="color: #888;">Loading games...</p>
             </div>
         </div>
-    </div>
-</div>
-
-<!-- SAVE MODAL -->
-<div id="saveModal">
-    <div class="save-modal-box">
-        <h2 style="margin-bottom: 10px;">Save Manager</h2>
-        <p style="color: #888; margin-bottom: 20px;">Export or import your game save data</p>
-        <button id="exportBtn" class="save-btn">Export Saves</button>
-        <label id="importLabel">
-            <input type="file" id="importFile" accept=".json" style="display:none;">
-            Import Saves
-        </label>
-        <button id="closeSaveModal">Close</button>
     </div>
 </div>
 
@@ -307,45 +250,7 @@ document.getElementById('searchInput').addEventListener('input', (e) => {
 
 document.addEventListener('DOMContentLoaded', loadGames);
 
-// SAVE MANAGER LOGIC
-const saveBtn = document.getElementById("saveManagerBtn");
-const saveModal = document.getElementById("saveModal");
-const closeSaveModal = document.getElementById("closeSaveModal");
-const exportBtn = document.getElementById("exportBtn");
-const importFile = document.getElementById("importFile");
-
-saveBtn.addEventListener("click", () => saveModal.style.display = "flex");
-closeSaveModal.addEventListener("click", () => saveModal.style.display = "none");
-
-exportBtn.addEventListener("click", () => {
-    const data = {};
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        data[key] = localStorage.getItem(key);
-    }
-    const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "game_saves.json";
-    a.click();
-});
-
-importFile.addEventListener("change", () => {
-    const file = importFile.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = e => {
-        try {
-            const data = JSON.parse(e.target.result);
-            for (const key in data) localStorage.setItem(key, data[key]);
-            alert("Imported! Refresh page.");
-        } catch { alert("Invalid file."); }
-    };
-    reader.readAsText(file);
-});
-
-// GAME IFRAME LOGIC - COSMOS UI
+// GAME IFRAME LOGIC
 const gameModal = document.getElementById('gameModal');
 const gameIframe = document.getElementById('gameIframe');
 const gameTitleEl = document.getElementById('gameTitle');
